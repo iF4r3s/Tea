@@ -75,10 +75,6 @@ client.on('message',async message => {
       SPEAK: false
     });
   setInterval(() => {
-      var currentTime = new Date(),
-Year = currentTime.getFullYear(),
-Month = currentTime.getMonth() + 1,
-Dat = currentTime.getDate()
       time.setName(`C'R » ${message.guild.members.size}`);
  },1000);
   });
