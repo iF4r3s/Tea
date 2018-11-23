@@ -7,7 +7,7 @@ client.login(process.env.CB);
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.username} \n Prefix ${prefix}`)
 client.user.setStatus('online');
-client.user.setActivity(`» C'R 100 user`, { type : "LISTENING" })
+client.user.setActivity(`Critical Network`, { type : "LISTENING" })
 });
 
 
@@ -58,7 +58,7 @@ client.on("message", message => {
     embed.setTimestamp()
     embed.setColor("RED")
     embed.setFooter(" ")
-    message.channel.send(`**Reason saved and will review by our staff**`);
+    message.reply(`**:white_check_mark: ${user.username} Muted! :zipper_mouth: **`);
       message.delete();
     user.addRole(message.guild.roles.find('name', 'Muted'));
     log.send({embed})
@@ -80,10 +80,11 @@ client.on("message", message => {
     embed.addField(`For`, `<@${user.id}>`)
     embed.addField(`By`, `<@${message.author.id}>`)
     embed.addField(`In Chat`, `<#${message.channel.id}>`)
+    embed.addField(`Reason`, `${reason}`)
     embed.setTimestamp()
     embed.setColor("RED")
     embed.setFooter(" ")
-    message.reply(`**Done!**`)
+    message.reply(`**:white_check_mark: ${user.username} Unmuted!**`);
       message.delete();
     user.removeRole(message.guild.roles.find('name', 'Muted'));
     log.send({embed})
