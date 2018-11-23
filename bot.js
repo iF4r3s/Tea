@@ -58,7 +58,7 @@ client.on("message", message => {
     embed.setTimestamp()
     embed.setColor("RED")
     embed.setFooter(" ")
-    message.reply(`**:white_check_mark: ${user.username} Muted! :zipper_mouth: **`);
+    message.reply(`**:white_check_mark: ${user.user.username} Muted! :zipper_mouth: **`);
       message.delete();
     user.addRole(message.guild.roles.find('name', 'Muted'));
     log.send({embed})
@@ -80,11 +80,10 @@ client.on("message", message => {
     embed.addField(`For`, `<@${user.id}>`)
     embed.addField(`By`, `<@${message.author.id}>`)
     embed.addField(`In Chat`, `<#${message.channel.id}>`)
-    embed.addField(`Reason`, `${reason}`)
     embed.setTimestamp()
     embed.setColor("RED")
     embed.setFooter(" ")
-    message.reply(`**:white_check_mark: ${user.username} Unmuted!**`);
+    message.reply(`**:white_check_mark: ${user.user.username} Unmuted!**`);
       message.delete();
     user.removeRole(message.guild.roles.find('name', 'Muted'));
     log.send({embed})
