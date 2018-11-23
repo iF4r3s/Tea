@@ -80,7 +80,6 @@ client.on("message", message => {
     embed.addField(`For`, `<@${user.id}>`)
     embed.addField(`By`, `<@${message.author.id}>`)
     embed.addField(`In Chat`, `<#${message.channel.id}>`)
-    embed.addField(`Reason`, `${reason}`)
     embed.setTimestamp()
     embed.setColor("RED")
     embed.setFooter(" ")
