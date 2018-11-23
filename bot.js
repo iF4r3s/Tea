@@ -15,10 +15,9 @@ client.on("message", message => {
   var user = message.mentions.members.first();
   var log = message.guild.channels.find("name", "log");
   var reason = message.content.split(" ").slice(2).join(' ');
-  if(!user) return message.reply(`Mention someone`);
-  if(!log) return message.reply(`Create text channel named #log`);
-  if(reason.length < 1) return message.reply(`Set a reason`);
   if(message.content.startsWith(`${prefix}warn`)){
+    if(!user) return message.reply(`Mention someone`);   if(!log) return message.reply(`Create text channel named #log`);
+    if(reason.length < 1) return message.reply(`Set a reason`);
     if(!message.member.roles.find("name", "Support Team")) return message.reply(`You must have **Support Team** Role`);
     var embed = new Discord.RichEmbed();
     embed.setAuthor(`${user.user.username}`, user.avatarURL)
