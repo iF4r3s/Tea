@@ -31,8 +31,8 @@ client.on("message", message => {
     embed.setTimestamp()
     embed.setColor("WHITE")
     embed.setFooter(" ")
+    message.channel.send(`${user} ${reason}`);
        message.delete();
-    message.channel.send(`${user} ${reason}`)
     log.send({embed})
   }
 });
