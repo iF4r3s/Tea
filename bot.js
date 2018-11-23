@@ -18,7 +18,7 @@ client.on("message", message => {
   if(!user) return message.reply(`Mention someone`);
   if(!log) return message.reply(`Create text channel named #log`);
   if(reason.length < 1) return message.reply(`Set a reason`);
-  if(message.content === `${prefix}warn`){
+  if(message.content.startsWith(`${prefix}warn`)){
     if(!message.member.roles.find("name", "Support Team")) return message.reply(`You must have **Support Team** Role`);
     var embed = new Discord.RichEmbed();
     embed.setAuthor(`${user.user.username}`, user.avatarURL)
