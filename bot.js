@@ -5,7 +5,7 @@ const prefix = "$";
 client.login(process.env.CB);
 
 client.on("ready", () => {
-  console.login(`Logged in as ${client.user.username} \n Prefix ${prefix}`)
+  console.log(`Logged in as ${client.user.username} \n Prefix ${prefix}`)
 client.user.setStatus('online');
 client.user.setActivity(`Critical Network`, { type : "LISTENING" })
 });
