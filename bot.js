@@ -26,6 +26,70 @@ client.on('message', message => {
 });
 
 
+client.on('message', async (message) => {
+  if(message.content.startsWith(`${prefix}apply`)) {
+    await message.channel.send("** ما اسمك ومن وين وكم عمرك؟**").then(e => {
+    let filter = m => m.author.id === message.author.id
+    let lan = '';
+    let md = '';
+    let br = '';
+    let chaLan = message.channel.awaitMessages(filter, { max: 1, time: 400000, errors: ['time'] })
+      .then(collected => {
+        lan = collected.first().content
+        collected.first().delete()
+        e.delete();
+        message.channel.send('** ما خبرتك كأداري؟**').then(m => {
+        let chaMd = message.channel.awaitMessages(filter, { max: 1, time: 400000, errors: ['time'] })
+          .then(co => {
+            md = co.first().content
+            co.first().delete()
+            m.delete();
+            message.channel.send('**كم مدة تفاعلك**').then(ms => {
+            let br = message.channel.awaitMessages(filter, { max: 1, time: 400000, errors: ['time'] })
+              .then(col => {
+                br = col.first().content
+                col.first().delete()
+                ms.delete()
+                message.channel.send('جاري التقديم ..').then(b => {
+                setTimeout(() => { 
+                  b.edit(`**تم التقديم وسيتم الرد فـ اقرب وقت**`)
+                },2000);
+                var gg = message.guild.channels.find('name', 'التقديمات')
+                if(!gg) return;
+                if(gg) {
+                  gg.send({
+                      embed : new Discord.RichEmbed()
+                      .setDescrtiption(`اسمك | كم عمرك | من وين | الوقت عندك الحين؟ \n**${lan}**\nهل لديك خبره كإداري من قبل؟\n**${md}**\nكم مده تفاعلك يومياً؟\n**${br}**`)
+                      .setFooter(` `)
+                      .setTimestamp()
+                    });
+                  } 
+                })
+              })
+            })
+          })
+        })
+      })
+    })
+  }
+})
+
+
+client.on('message',async message => {
+  let mention = message.mentions.members.first();
+  let Room = client.channels.get('517010356007075870');
+  if(message.content.startsWith(`${prefix}accept`)) {
+  if(message.guild.id !== '489717264686252042') return;
+  if (!message.member.hasPermission("ADMINSTRATION")) return message.reply("**:x: | This Command is Just for adminstration!**").then(msg => msg.delete(5000));
+  if(!mention) return message.reply("منشن شخص");
+  Room.send(`**:white_check_mark: | User : ${mention} \nAccepted and get __Staff__ Role**`);
+  mention.addRole(message.guild.roles.find("name", "» Staff"));
+  mention.addRole(message.guild.roles.find("name", "• Support •"));
+  mention.addRole(message.guild.roles.find("name", "Support Team"));
+  }
+});
+
+
 client.on('message', message => {
   if(message.content.startsWith(`${prefix}bc`)){
     if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**هذا الامر مخصص للإداره**`);
