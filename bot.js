@@ -6,7 +6,7 @@ client.login(process.env.Tea);
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}\n Users: ${client.users.size}`);
-client.user.setGame(`Tea System.`, "https://twitch.tv/teacommunity");
+client.user.setGame(`For Sell.`, "https://twitch.tv/teacommunity");
 });
 
 
@@ -90,17 +90,23 @@ client.on('message',async message => {
 });
 
 
-client.on('message', message => {
-  if(message.content.startsWith(`${prefix}bc`)){
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**هذا الامر مخصص للإداره**`);
-    let args = message.content.split(" ").slice(1);
-    let a1 = args.join(" ");
-    message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
-      m.send(`${a1}\n ${m}`);
-    })
-    message.channel.send(`:white_check_mark: | Done \n Message Boradcasted For \`${message.guild.members.filter(m => m.presence.status !== 'all').size}\``);
-    message.delete();
-  }
+client.on("message", message => {
+
+    
+
+    if (message.content.startsWith(prefix + "bc")) {
+
+        
+        if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply('**__ليس لديك صلاحيات__**');
+
+        let args = message.content.split(" ").slice(1);
+        var argresult = args.join(' ');
+        message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+            m.send(`${argresult}\n ${m}`);
+        })
+        message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'all').size}\` : :twitter_pepe:عدد الاعضاء المستلمين`);
+        message.delete();
+    };
 });
 
 
