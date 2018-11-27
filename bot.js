@@ -6,7 +6,7 @@ client.login(process.env.Tea);
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}\n Users: ${client.users.size}`);
-client.user.setGame(`Tea System`, "https://twitch.tv/teacommunity");
+client.user.setGame(`Tea System.`, "https://twitch.tv/teacommunity");
 });
 
 
@@ -54,7 +54,7 @@ client.on('message', async (message) => {
                 setTimeout(() => { 
                   b.edit(`**تم التقديم وسيتم الرد فـ اقرب وقت**`)
                 },2000);
-                var gg = message.guild.channels.find('name', 'التقديمات')
+                var gg = message.guild.channels.find('name', 'applications')
                 if(!gg) return;
                 if(gg) {
                   gg.send({
