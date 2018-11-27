@@ -93,9 +93,10 @@ client.on('message',async message => {
 client.on('message', message => {
   if(message.content.startsWith(`${prefix}bc`)){
     if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`**هذا الامر مخصص للإداره**`);
-    let args = message.content.split(" ").slice(1).join(" ");
+    let args = message.content.split(" ").slice(1);
+    let a1 = args.join(" ");
     message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
-      m.send(`${args}\n ${m}`);
+      m.send(`${a1}\n ${m}`);
     })
     message.channel.send(`:white_check_mark: | Done \n Message Boradcasted For \`${message.guild.members.filter(m => m.presence.status !== 'all').size}\``);
     message.delete();
